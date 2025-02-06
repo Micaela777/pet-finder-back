@@ -26,8 +26,12 @@ const port = process.env.PORT || 3003
 app.use(express.json())
 app.use(cors())
 
-app.post("/test", (req, res) => {
-  res.json({message: "hola"})
+app.get("/", (req, res) => {
+  res.send({message: "hola soy la barra"})
+})
+
+app.get("/test", (req, res) => {
+  res.send({message: "hola soy es test"})
 })
 
 // signup
