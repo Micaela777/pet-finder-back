@@ -23,7 +23,11 @@ const staticDirPath = path.resolve(__dirname, "../dist")
 const app = express()
 const port = process.env.PORT || 3003
 
-app.use(cors())
+app.use(cors({
+  origin: "https://dwf-m8-final.web.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}))
 app.use(express.json())
 
 app.get("/", (req, res) => {
