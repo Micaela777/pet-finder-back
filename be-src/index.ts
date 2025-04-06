@@ -23,8 +23,8 @@ const staticDirPath = path.resolve(__dirname, "../dist")
 const app = express()
 const port = process.env.PORT || 3003
 
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 
 app.get("/", (req, res) => {
   res.send({message: "hola soy la barra"})
