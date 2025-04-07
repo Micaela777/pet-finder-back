@@ -24,7 +24,7 @@ const app = express()
 const port = process.env.PORT || 3003
 
 app.use(cors({
-  origin: ["https://dwf-m8-final.web.app", "http://localhost:3000", "http://127.0.0.1:61909"],
+  origin: ["https://dwf-m8-final.web.app", "http://localhost:8080"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }))
