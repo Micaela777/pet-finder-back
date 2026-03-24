@@ -41,7 +41,7 @@ app.get("/test", (req, res) => {
 // signup
 app.post("/auth", async (req, res) => {
 
-  const {location, lat, lng, fullname, email, password} = req.body
+  const {location, fullname, email, password} = req.body
 
   const createdUser = await createUser(req.body)
   res.json(createdUser)

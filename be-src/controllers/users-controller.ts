@@ -10,7 +10,7 @@ function getSHA256ofString (text: string){
 
 export async function createUser(userData){
 
-    const {email, password, fullname, location, lat, lng} = userData
+    const {email, password, fullname, location} = userData
 
     if (!email || !password) {
         throw new Error('Se requiere de un email y contraseña.');
@@ -22,8 +22,6 @@ export async function createUser(userData){
           email,
           fullname,
           location,
-          lat,
-          lng
         }
     })
     const [auth, authCreated] = await Auth.findOrCreate({
