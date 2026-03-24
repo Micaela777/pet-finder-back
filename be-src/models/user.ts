@@ -7,6 +7,8 @@ export class User extends Model {}
     fullname: DataTypes.STRING,
     email: DataTypes.STRING,
     location: DataTypes.STRING,
+    lat: DataTypes.FLOAT,
+    lng: DataTypes.FLOAT
     
   },{
     sequelize,
