@@ -100,7 +100,7 @@ export async function updatePassword(newPassword) {
 
   const updatedPassword = Auth.update(update, {
     where: {
-      id: userId
+      user_id: userId
     }
   })
 
