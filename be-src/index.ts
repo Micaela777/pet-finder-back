@@ -7,7 +7,7 @@ import { User, Pet, Auth } from "./models";
 import * as crypto from "crypto";
 import * as jwt from "jsonwebtoken";
 import { authToken, createUser, authMiddelware, updateData, updatePassword } from "./controllers/users-controller";
-import { createPet, bodyToIndex, updatePetProfile, findAllPets } from "./controllers/pets-controller";
+import { createPet, bodyToIndex, updatePetProfile, findAllPets, deletePet } from "./controllers/pets-controller";
 import { json } from "sequelize";
 
 const staticDirPath = path.resolve(__dirname, "../dist")
@@ -138,6 +138,15 @@ app.put("/pets/:id", async (req, res) => {
   //console.log(indexItem)
   const algoliaRes = await index.partialUpdateObject(indexItem)
 })
+
+
+app.delete("/pets/:id", authMiddelware, async (req, res) => {
+
+    const id = req.params.id;
+
+    const deletedPet = await deletePet(id);
+    res.json(deletedPet);
+});
 
 
 app.get("/mascotas-cerca-de", async (req, res) => {

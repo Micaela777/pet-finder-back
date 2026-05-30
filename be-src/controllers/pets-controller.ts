@@ -67,7 +67,18 @@ export async function bodyToIndex (body, id?){
       response.objectID = id
     }
     return response
-  }
+}
+
+export async function findAllPets(id) {
+    const pets = await Pet.findAll({
+        where: {
+          userId: id
+        },
+        include: [User]
+      });
+
+    return pets  ;
+};
 
 export async function updatePetProfile(id, updateData) {
 
@@ -93,14 +104,12 @@ export async function updatePetProfile(id, updateData) {
     return pet;
 };
 
+export async function deletePet(id) {
 
-export async function findAllPets(id) {
-    const pets = await Pet.findAll({
-        where: {
-          userId: id
-        },
-        include: [User]
-      })
+    await Pet.destroy({ where: { id } });
 
-    return pets  
-}
+    await index.deleteObject(id);
+
+    return true;
+};
+
