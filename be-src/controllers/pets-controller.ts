@@ -70,32 +70,32 @@ export async function bodyToIndex (body, id?){
   }
 
 export async function updatePetProfile(id, updateData) {
+
+    let pictureURL = updateData.pictureURL;
+
     if(updateData.pictureDataURL){
         const image = await cloudinary.uploader.upload(updateData.pictureDataURL,
             {
                 resource_type: "image",
                 discard_original_filename: true,
                 width: 1000
-            }
-        )
-        const [pet] = await Pet.update({
-            name: updateData.name,
-            pictureURL: image.secure_url,
-            location: updateData.location,
-            _geoloc: {
-                lng: updateData.lng,
-                lat: updateData.lat
-            }
-        }, {
-            where:{
-                id: id
-            }
-        })
-        image.secure_url
+            });
 
-        return pet
-    }
-}
+            pictureURL = image.secure_url;
+    };
+    const [pet] = await Pet.update({
+        name: updateData.name,
+        pictureURL: pictureURL,
+        location: updateData.location,
+        lat: updateData.lat,
+        lng: updateData.lng
+    }, {
+        where: { id: id }
+    });
+
+    return pet;
+};
+
 
 export async function findAllPets(id) {
     const pets = await Pet.findAll({
