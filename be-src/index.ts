@@ -44,8 +44,9 @@ app.post("/auth", async (req, res) => {
   const {location, fullname, email, password} = req.body
 
   const createdUser = await createUser(req.body)
-  res.json(createdUser)
-  
+  const token = await authToken(email, password)
+
+  res.json({ createdUser, token })
 })
 
 
