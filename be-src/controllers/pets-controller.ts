@@ -71,28 +71,25 @@ export async function bodyToIndex (body, id?){
 
 export async function updatePetProfile(id, updateData) {
 
-    let pictureURL = updateData.pictureURL;
-
-    if(updateData.pictureDataURL){
-        const image = await cloudinary.uploader.upload(updateData.pictureDataURL,
-            {
-                resource_type: "image",
-                discard_original_filename: true,
-                width: 1000
-            });
-
-            pictureURL = image.secure_url;
-    };
-    const [pet] = await Pet.update({
+    const updateFields: any = {
         name: updateData.name,
-        pictureURL: pictureURL,
         location: updateData.location,
         lat: updateData.lat,
         lng: updateData.lng
-    }, {
+    };
+
+    if(updateData.pictureDataURL){
+        const image = await cloudinary.uploader.upload(updateData.pictureDataURL, {
+            resource_type: "image",
+            discard_original_filename: true,
+            width: 1000
+        });
+        updateFields.pictureURL = image.secure_url;
+    };
+
+    const [pet] = await Pet.update(updateFields, {
         where: { id: id }
     });
-
     return pet;
 };
 
