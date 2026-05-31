@@ -31,7 +31,7 @@ app.use(cors({
 app.use(express.json({ limit: "100mb" }))
 
 app.get("/", (req, res) => {
-  res.send({message: "hola soy la barra"})
+  res.send({message: "hola soy la barraa"})
 })
 
 app.get("/test", (req, res) => {
