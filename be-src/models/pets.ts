@@ -9,7 +9,6 @@ export class Pet extends Model {}
     location: DataTypes.STRING,
     lat: DataTypes.FLOAT,
     lng: DataTypes.FLOAT
-    
   },{
     sequelize,
     modelName: "pet"
