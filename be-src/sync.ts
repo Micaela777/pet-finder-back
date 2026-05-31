@@ -1,3 +1,5 @@
 import { sequelize } from "./models/conn";
 
-sequelize.sync({ alter: true });
+sequelize.sync();
+
+// sequelize.sync({ alter: true });
