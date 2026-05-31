@@ -3,7 +3,7 @@ import * as express from "express";
 import * as path from "path";
 import * as cors from "cors";
 import { index } from "./../lib/algolia";
-import { User, Pet, Auth } from "./models";
+import { User, Pet, Auth, Report } from "./models";
 import * as crypto from "crypto";
 import * as jwt from "jsonwebtoken";
 import { authToken, createUser, authMiddelware, updateData, updatePassword } from "./controllers/users-controller";
