@@ -65,7 +65,7 @@ export async function authMiddelware(req, res, next){
 
   const token = req.headers.authorization.split(" ")[1]
   
-  try{
+  try { 
     const data = jwt.verify(token, SECRET)
     req._user = data
     next()

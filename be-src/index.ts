@@ -1,4 +1,3 @@
-
 import * as express from "express";
 import * as path from "path";
 import * as cors from "cors";
@@ -8,6 +7,7 @@ import * as crypto from "crypto";
 import * as jwt from "jsonwebtoken";
 import { authToken, createUser, authMiddelware, updateData, updatePassword } from "./controllers/users-controller";
 import { createPet, bodyToIndex, updatePetProfile, findAllPets, deletePet } from "./controllers/pets-controller";
+import { createReport } from "./controllers/reports-controller";
 import { json } from "sequelize";
 
 const staticDirPath = path.resolve(__dirname, "../dist")
@@ -159,6 +159,11 @@ app.get("/mascotas-cerca-de", async (req, res) => {
   res.json(hits)
 })
 
+
+app.post("/reports", async (req, res) => {
+    const report = await createReport(req.body);
+    res.json(report);
+});
 
 /*app.use(express.static(staticDirPath));
 
