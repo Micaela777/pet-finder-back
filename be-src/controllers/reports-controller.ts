@@ -1,5 +1,6 @@
 import { Report, Pet, User } from "../models";
 import { resend } from "../../lib/resend";
+import { index } from "../../lib/algolia";
 
 export async function createReport(reportData) {
     try {
@@ -32,6 +33,8 @@ export async function markPetAsFound(id) {
     try {
         
         const petFound = await Pet.update({ found: true }, { where: { id } })
+        await index.partialUpdateObject({ objectID: id, found: true });
+        
         return petFound
 
     } catch (error) {
