@@ -7,7 +7,7 @@ import * as crypto from "crypto";
 import * as jwt from "jsonwebtoken";
 import { authToken, createUser, authMiddelware, updateData, updatePassword } from "./controllers/users-controller";
 import { createPet, bodyToIndex, updatePetProfile, findAllPets, deletePet } from "./controllers/pets-controller";
-import { createReport } from "./controllers/reports-controller";
+import { createReport, markPetAsFound } from "./controllers/reports-controller";
 import { json } from "sequelize";
 
 const staticDirPath = path.resolve(__dirname, "../dist")
@@ -165,6 +165,13 @@ app.post("/reports", async (req, res) => {
     res.json(report);
 });
 
+
+app.put("/pets/:id/found", authMiddelware, async (req, res) => {
+    const id = req.params.id;
+    
+    const result = await markPetAsFound(id);
+    res.json(result);
+});
 /*app.use(express.static(staticDirPath));
 
 app.get("*", (req, res) =>{

@@ -27,3 +27,14 @@ export async function createReport(reportData) {
         console.log(error)
     }
 }
+
+export async function markPetAsFound(id) {
+    try {
+        
+        const petFound = await Pet.update({ found: true }, { where: { id } })
+        return petFound
+
+    } catch (error) {
+        console.log(error)
+    }
+}
