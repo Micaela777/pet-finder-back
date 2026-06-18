@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "./conn"
+import { sequelize } from "./conn";
 
 
 export class Pet extends Model {}
@@ -8,7 +8,8 @@ export class Pet extends Model {}
     pictureURL: DataTypes.STRING,
     location: DataTypes.STRING,
     lat: DataTypes.FLOAT,
-    lng: DataTypes.FLOAT
+    lng: DataTypes.FLOAT,
+    found: DataTypes.BOOLEAN
   },{
     sequelize,
     modelName: "pet"
