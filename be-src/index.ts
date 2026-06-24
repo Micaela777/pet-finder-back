@@ -100,7 +100,7 @@ app.post("/pets", authMiddelware, async (req, res) => {
 
   if(!req.body){
     res.status(400).json({
-      message: "Los datos no están completos"
+      message: "Los datos no están completos."
     })
   }
 
